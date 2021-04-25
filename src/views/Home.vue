@@ -2,24 +2,28 @@
   <main v-if="!loading">
     <Data-title :text="title" :dataDate="dataDate" />
   </main>
-  <main class="flex flex-col align-center justify-center text-center" v-else>
+  <main class="flex flex-col align-center justify-center text-center mb-4" v-else>
     <div class="text-ger-500 text-3xl mt-10 mb-6">
       Fetching Data 
     </div>
     <img :src="loadingImage" class="m-auto" />
   </main>
-  <Data-Boxes />
+  <Data-Boxes :stats="stats" />
+
+  <CountrySelect :countries="countries" />
 </template>
 
 <script>
 import DataTitle from '@/components/DataTitle'
 import DataBoxes from '@/components/DataBoxes'
+import CountrySelect from '@/components/CountrySelect'
 
 export default {
   name: 'Home',
   components: {
     DataTitle, 
-    DataBoxes
+    DataBoxes,
+    CountrySelect
   },
   data(){
     return {
