@@ -6,11 +6,11 @@
 
       <div class="text-2xl mb-4">
         <span class="font-bold">New:</span>
-        {{ stats.NewConfirmed }}
+        {{ numberWithCommas(stats.NewConfirmed) }}
       </div>
       <div class="text-2xl mb-4">
         <span class="font-bold">Total:</span>
-        {{ stats.TotalConfirmed }}
+        {{ numberWithCommas(stats.TotalConfirmed) }}
       </div>
     </div>
 
@@ -38,8 +38,7 @@ export default {
   props: ['stats'],
   methods: {
     numberWithCommas(x) {
-      // return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-      return x;
+      return new Intl.NumberFormat().format(x);
     }
   }
 }

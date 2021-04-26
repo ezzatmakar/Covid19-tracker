@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <select
+    <select @change="onChange()"
       v-model="selected"
       class="shadow-md bg-blue-100 text-gray-700 border-none inline-block py-3 pl-3 pr-8 rounded leading-tight"
     >
@@ -10,7 +10,7 @@
       >
         Select Country
       </option>
-      <option v-for="country in countries" :key="country.ID">
+      <option v-for="country in countries" :value="country.ID">
         {{ country.Country }}
       </option>
     </select>
@@ -26,6 +26,12 @@ export default {
       selected: 0,
     };
   },
+  methods: {
+    onChange(){
+      const country = this.countries.find( (item)=> item.ID === this.selected)
+      this.$emit('get-country', country)
+    }
+  }
 };
 </script>
 

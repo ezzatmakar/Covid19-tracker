@@ -10,7 +10,15 @@
   </main>
   <Data-Boxes :stats="stats" />
 
-  <CountrySelect :countries="countries" />
+  <CountrySelect @get-country="getCountryData" :countries="countries" />
+  <div v-if="stats.Country" class="text-center pt-3">
+    <button
+        @click="clearCountryData"
+        class="shadow-md bg-blue-100 text-blue-700 hover:text-red-600 py-2 px-4 border border-blue-500 rounded">
+      Clear selected
+    </button>
+  </div>
+
 </template>
 
 <script>
@@ -40,10 +48,21 @@ export default {
       const res = await fetch('https://api.covid19api.com/summary');
       const data = await res.json();
       return data;
+    },
+    getCountryData(country) {
+      this.stats = country
+      this.title = country.Country
+    },
+    async clearCountryData() {
+      this.loading = true
+      const data = await this.fetchCovidData()
+      this.title = 'Global'
+      this.stats = data.Global
+      this.loading = false
     }
   },
   async created(){
-    const data = await this.fetchCovidData();
+    const data = await this.fetchCovidData()
     this.dataDate = data.Date
     this.stats = data.Global
     this.countries = data.Countries 
