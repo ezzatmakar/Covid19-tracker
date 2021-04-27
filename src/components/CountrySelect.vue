@@ -10,7 +10,7 @@
       >
         Select Country
       </option>
-      <option v-for="country in countries" :value="country.ID" >
+      <option v-for="country in countries" :value="country.ID" :key="country.ID">
         {{ country.Country }}
       </option>
     </select>
