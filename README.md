@@ -1,4 +1,5 @@
-# (covid-tracker)[https://covid19-tracker-ez.netlify.app/]
+# covid-tracker
+https://covid19-tracker-ez.netlify.app
 
 ## Project setup
 ```
